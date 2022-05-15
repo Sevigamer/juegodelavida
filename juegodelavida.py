@@ -1,11 +1,18 @@
 
 import copy, random, sys, time
 
-# Constantes
-ANCHO = 79   # Ancho de la cuadrícula
-ALTO = 20  # Alto de la cuadrícula
+print("Dime el ancho de la cuadricula")
+ancho = int(input())
+print("Dime el alto de la cuadricula")
+alto = int(input())
+print("Dime un caracter para representar a la celula viva")
+celula = input()
 
-VIVO = 'O'  # Carácter para la celda viva
+# Constantes
+ANCHO = ancho   # Ancho de la cuadrícula
+ALTO = alto  # Alto de la cuadrícula
+
+VIVO = celula  # Carácter para la celda viva
 MUERTO = ' '   # Carácter para la celda muerta
 
 # Las variables celulas y siguientesCelulas son diccionarios que contienen
@@ -69,8 +76,8 @@ while True:  # bucle principal del programa
                                             or numVecinasVivas == 3):
                     # Cálulas vivas con 2 o 3 vecinas vivas permanecen vivas
                     siguientesCelulas[(x, y)] = VIVO
-            elif celulas[(x, y)] == MUERTO and numVecinasVivas == 3:
-                # Células muertas con 3 vecinas vivas cobran vida
+            elif celulas[(x, y)] == MUERTO and numVecinasVivas >= 2:
+                # Células muertas con 2 vecinas vivas o mas cobran vida
                 siguientesCelulas[(x, y)] = VIVO
             else:
                 # En cualquier otro caso continuan muertas
